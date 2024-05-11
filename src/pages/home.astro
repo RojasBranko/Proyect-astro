@@ -1,0 +1,72 @@
+---
+import { db, Category, Todo } from "astro:db";
+
+const categories = await db.select().from(Category);
+console.log(categories);
+if (Astro.request.method === "POST") {
+  //CREAR EL TODO
+  const formData = await Astro.request.formData();
+  const title = formData.get("title");
+  const descripcion = formData.get("descripcion");
+  const category_id = formData.get("category_id");
+  console.log({ title, descripcion, category_id });
+
+  if (
+    typeof title === "string" &&
+    typeof descripcion === "string" && descripcion.trim() !== "" &&
+    typeof category_id === "string"
+  ) {
+  await db.insert(Todo)
+     .values({ title, descripcion ,user_id: "assas23",category_id })
+  }
+
+}
+---
+
+<div class="max-w-md mx-auto bg-white rounded p-6">
+  <h2 class="text-xl font-semibold mb-4">Create Todo</h2>
+  <form method="post">
+    <div class="mb-4">
+      <label for="title" class="block text-sm font-medium text-gray-700"
+        >Titulo</label
+      >
+      <input
+        type="text"
+        id="title"
+        name="title"
+        class="mt-1 py-3 border-2 focus:ring-indigo-500 block w-full shadow-sm sm:text-sm"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="description" class="block text-sm font-medium text-gray-700"
+        >Description</label
+      >
+      <textarea
+        id="description"
+        name="description"
+        rows="3"
+        class="mt-1 border-2 focus:ring-indigo-500 block w-full shadow-sm sm:text-sm"
+      ></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="category_id" class="block text-sm font-medium text-gray-700"
+        >Category</label
+      >
+      <select
+        id="category_id"
+        name="category_id"
+        class="mt-1 block w-full py-2 px-3 border-gray-300 bg-white rounded-md shadow-sm focus:outline-none"
+      >
+        {
+          categories.map((category) => (
+            <option value={category.id}>{category.label}</option>
+          ))
+        }
+      </select>
+    </div>
+    <div class="mt-4">
+      <button type="submit"> Create </button>
+    </div>
+  </form>
+</div>
