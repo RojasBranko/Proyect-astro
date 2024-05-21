@@ -1,10 +1,21 @@
 import { column, defineDb, defineTable } from 'astro:db';
 
 const User = defineTable({
+  deprecated: true,
   columns:{
     id : column.text({primaryKey: true}),
     email: column.text(),
     username: column.text(),
+    password: column.text(),
+  }
+})
+const UserN = defineTable({
+  deprecated: true,
+  columns:{
+    id : column.text({primaryKey: true, optional: false, unique: true}),
+    email: column.text(),
+    username: column.text(),
+    password: column.text(),
   }
 })
 const Todo = defineTable({
@@ -29,5 +40,6 @@ export default defineDb({
     User,
     Category,
     Todo,
+    UserN,
   }
 });

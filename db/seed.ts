@@ -6,29 +6,34 @@ export default async function seed() {
 	await db.insert(User).values([
 		{
 			id: "sooasd",
-			email: "adams@gmail.com",
 			username: "Adams",
+			email: "adams@gmail.com",
+			password:""
 		},
 		{
 			id: "assas",
-			email: "branko@gmail.com",
 			username: "Branko",
+			email: "branko@gmail.com",
+			password:""
 		}
 		,
 		{
 			id: "assassd",
-			email: "oscar@gmail.com",
 			username: "Oscar",
+			email: "oscar@gmail.com",
+			password:""
 		},
 		{
 			id: "assasaas",
-			email: "ignacio@gmail.com",
 			username: "Ignacio",
+			email: "ignacio@gmail.com",
+			password:""
 		},
 		{
 			id: "assas23",
-			email: "juan@gmail.com",
 			username: "Juan",
+			email: "juan@gmail.com",
+			password:""
 		}
 	])
 

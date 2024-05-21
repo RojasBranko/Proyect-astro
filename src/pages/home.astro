@@ -1,72 +1,84 @@
 ---
-import { db, Category, Todo } from "astro:db";
-
-const categories = await db.select().from(Category);
-console.log(categories);
-if (Astro.request.method === "POST") {
-  //CREAR EL TODO
-  const formData = await Astro.request.formData();
-  const title = formData.get("title");
-  const descripcion = formData.get("descripcion");
-  const category_id = formData.get("category_id");
-  console.log({ title, descripcion, category_id });
-
-  if (
-    typeof title === "string" &&
-    typeof descripcion === "string" && descripcion.trim() !== "" &&
-    typeof category_id === "string"
-  ) {
-  await db.insert(Todo)
-     .values({ title, descripcion ,user_id: "assas23",category_id })
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title="Home2">
+  <header class="header">
+      <h1>SuperEntreteiment</h1>
+      <ul>
+          <li><button id="button4">inicio</button></li>
+          <li><button id="button3">Empresa</button></li>
+          <li><button id="button2">registrar</button></li>
+          <li><button id="button">inicio sesión</button></li>
+      </ul>
+  </header>
+  <main>
+      <h1>¿quienes somos nostros?</h1>
+      <p>nosotros somos una empresa de entretension para la una gran mayoria de personas que pueden </p>
+  </main>
+</Layout>
+<script>
+  const button4 = document.querySelector("#button4");
+  const button2 = document.querySelector("#button2");
+  const button3 = document.querySelector("#button3");
+  const button = document.querySelector("#button");
+  button?.addEventListener("click", async function () {
+      // Redireccionar a otro índice (por ejemplo, index.html)
+      window.location.href = "/";
+  });
+  button2?.addEventListener("click", async function () {
+      // Redireccionar a otro índice (por ejemplo, index.html)
+      window.location.href = "/datos";
+  });
+  button3?.addEventListener("click", async function () {
+      // Redireccionar a otro índice (por ejemplo, index.html)
+      window.location.href = "/home";
+  });
+  button4?.addEventListener("click", async function () {
+      // Redireccionar a otro índice (por ejemplo, index.html)
+      window.location.href = "/";
+  });
+</script>
+<style>
+  body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+  }
+  .header {
+      background-color: #272626;
+      color: #fdfbfb;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000; /* Asegura que el header esté por encima de todo */
   }
 
-}
----
+  .header h1 {
+      margin: 0;
+  }
 
-<div class="max-w-md mx-auto bg-white rounded p-6">
-  <h2 class="text-xl font-semibold mb-4">Create Todo</h2>
-  <form method="post">
-    <div class="mb-4">
-      <label for="title" class="block text-sm font-medium text-gray-700"
-        >Titulo</label
-      >
-      <input
-        type="text"
-        id="title"
-        name="title"
-        class="mt-1 py-3 border-2 focus:ring-indigo-500 block w-full shadow-sm sm:text-sm"
-      />
-    </div>
-    <div class="mb-4">
-      <label for="description" class="block text-sm font-medium text-gray-700"
-        >Description</label
-      >
-      <textarea
-        id="description"
-        name="description"
-        rows="3"
-        class="mt-1 border-2 focus:ring-indigo-500 block w-full shadow-sm sm:text-sm"
-      ></textarea>
-    </div>
+  .header ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+  }
 
-    <div class="mb-4">
-      <label for="category_id" class="block text-sm font-medium text-gray-700"
-        >Category</label
-      >
-      <select
-        id="category_id"
-        name="category_id"
-        class="mt-1 block w-full py-2 px-3 border-gray-300 bg-white rounded-md shadow-sm focus:outline-none"
-      >
-        {
-          categories.map((category) => (
-            <option value={category.id}>{category.label}</option>
-          ))
-        }
-      </select>
-    </div>
-    <div class="mt-4">
-      <button type="submit"> Create </button>
-    </div>
-  </form>
-</div>
+  .header li {
+      display: inline-block;
+      margin-left: 10px;
+  }
+  main{
+    color: white;
+    margin: 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    padding-left: 2%;
+  }
+  h1{
+    padding-left:40%;
+  }
+  </style>

@@ -1,13 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import { getSession } from 'auth-astro/server';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { getSession } from "auth-astro/server";
 
 const session = await getSession(Astro.request);
-console.log(session) 
+console.log(session);
+
 ---
 
 <Layout title="Welcome to Astro.">
+	<header class="header">
+        <h1>SuperEntreteiment</h1>
+        <ul>
+            <li><button id="button4">inicio</button></li>
+            <li><button id="button3">Empresa</button></li>
+            <li><button id="button2">registrar</button></li>
+            <li><button id="button">inicio sesión</button></li>
+        </ul>
+    </header>
 	<main>
 		<svg
 			class="astro-a"
@@ -37,46 +47,145 @@ console.log(session)
 				</linearGradient>
 			</defs>
 		</svg>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<button id="logintwitch">Login twitch</button>
-		<button id="logingit">Login github</button>
-		<button id="logout">Logout</button>
-		
+		<h1>Welcome to <span class="text-gradient">Mi Pagina</span></h1>
+		<ul class="botones">
+			<li>
+				<button id="model">modelo</button>
+			</li>
+			<li>
+				<button id="logintwitch">Login twitch</button>
+			</li>
+			<li>
+				<button id="logingit">Login github</button>
+			</li>
+			<li>
+				<a href="/datos"><button id="regis">Registrar</button></a>
+			</li>
+		</ul>
 	</main>
 </Layout>
 <script>
-    const {signIn,signOut } = await import('auth-astro/client')
-    const logintwitch = document.querySelector('#logintwitch')
-	const logingit = document.querySelector('#logingit')
-    const logout = document.querySelector('#logout')
-    logintwitch?.addEventListener('click', async (event) => {
-        event.preventDefault()
-        await signIn("twitch", {
-            callbackUrl: "/home"
-        })
-    })
-    logout?.addEventListener('click', async (event) => {
-        event.preventDefault()
-        await signOut()
-    })
-	logingit?.addEventListener('click', async(event) => {
+	const { signIn, signOut } = await import("auth-astro/client");
+	const logintwitch = document.querySelector("#logintwitch");
+	const logingit = document.querySelector("#logingit");
+	const model = document.querySelector("#model");
+	const regis = document.querySelector("#regis");
+	logintwitch?.addEventListener("click", async (event) => {
+		event.preventDefault();
+		await signIn("twitch", {
+			callbackUrl: "/home2",
+		});
+	});
+	logingit?.addEventListener("click", async (event) => {
+		event.preventDefault();
+		await signIn("github", {
+			callbackUrl: "/home2",
+		});
+	});
+	model?.addEventListener("click", async (event) => {
+		event.preventDefault();
+		await signIn("Model", {
+			callbackUrl: "/modelo",
+		});
+	});
+	/* regis?.addEventListener('click', async(event)=> {
 		event.preventDefault()
-		await signIn('github',{
-			callbackUrl: "/home2"
+		await signIn('regis', {
+			callbackUrl: "/base"
 		})
-	})
-	
+	}) */
+	const button4 = document.querySelector("#button4");
+	const button2 = document.querySelector("#button2");
+	const button3 = document.querySelector("#button3");
+	const button = document.querySelector("#button");
+	button?.addEventListener("click", async function () {
+		
+		window.location.href = "/";
+	});
+	button2?.addEventListener("click", async function () {
+		
+		window.location.href = "/datos";
+	});
+	button3?.addEventListener("click", async function () {
+		
+		window.location.href = "/home";
+	});
+	button4?.addEventListener("click", async function () {
+		// Redireccionar a otro índice (por ejemplo, index.html)
+		window.location.href = "/";
+	});
 </script>
 
 <style>
+	header {
+		background-color: #333;
+		padding: 20px 0;
+		text-align: center;
+		color: white;
+	}
+	.header {
+		background-color: #424242;
+		color: #ffffff;
+		padding: 10px 20px;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		 /* Asegura que el header esté por encima de todo */
+	}
+
+	.header h1 {
+		margin: 0;
+	}
+
+	.header ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.header li {
+		display: inline-block;
+		margin-left: 10px;
+	}
+
+	button {
+		border-width: 1px;
+		border-radius: 10px;
+	}
+
+	nav {
+		margin-top: 20px;
+		text-align: center;
+	}
+	nav button {
+		background-color: #555;
+		border: none;
+		color: white;
+		padding: 10px 20px;
+		margin: 0 10px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+	nav button:hover {
+		background-color: #777;
+	}
 	main {
 		margin: auto;
 		padding: 1rem;
+		padding-top: 10%;
 		width: 800px;
 		max-width: calc(100% - 2rem);
 		color: white;
 		font-size: 20px;
 		line-height: 1.6;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative; /* Añadido para el posicionamiento absoluto del SVG */
 	}
 	.astro-a {
 		position: absolute;
@@ -101,33 +210,21 @@ console.log(session)
 		background-size: 400%;
 		background-position: 0%;
 	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
+	.botones {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		list-style: none;
 		padding: 0;
 	}
-	button{
+	.botones li {
+		margin: 10px;
+	}
+	.botones button {
+		padding: 10px;
+		cursor: pointer;
+	}
+	.botones button:hover {
 		color: red;
-		
-
 	}
 </style>

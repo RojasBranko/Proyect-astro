@@ -1,0 +1,127 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { db, User, Todo, eq, Category } from "astro:db";
+import { getSession } from "auth-astro/server";
+import { UserN } from "astro:db";
+
+const users = await db.select().from(User);
+console.log(User);
+const tods = await db
+  .select()
+  .from(Todo)
+  .innerJoin(User, eq(Todo.user_id, User.id))
+  .innerJoin(Category, eq(Todo.category_id, Category.id));
+const session = await getSession(Astro.request);
+console.log(session);
+---
+<Layout title="modeloTable">
+  <header class="header">
+    <h1>SuperEntreteiment</h1>
+    <ul>
+      <li><button id="button4">inicio</button></li>
+      <li><button id="button3">Empresa</button></li>
+      <li><button id="button2">registrar</button></li>
+      <li><button id="button">inicio sesión</button></li>
+    </ul>
+  </header>
+  <body>
+    <div class="container">
+      <h2>Usuarios Registrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre de Usuario</th>
+            <th>Correo Electrónico</th>
+          </tr>
+        </thead>
+        <tbody id="user-table">
+          
+          <tr>
+            <td>{UserN.id}</td>
+            <td>{UserN.username}</td>
+            <td>{UserN.email}</td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </body>
+</Layout>
+<script>
+  /* const Usuarios = await db.select().from(UserN); 
+  for (const ID of UserN); */
+ /*  const users = [
+    { username: "Branko", email: "Nrojas@gmail.com" },
+    { username: "Usuario2", email: "usuario2@example.com" },
+  ]; */
+  const button4 = document.querySelector("#button4");
+  const button2 = document.querySelector("#button2");
+  const button3 = document.querySelector("#button3");
+  const button = document.querySelector("#button");
+  button?.addEventListener("click", function () {
+    window.location.href = "/";
+  });
+  button2?.addEventListener("click", function () {
+    window.location.href = "/datos";
+  });
+  button3?.addEventListener("click", function () {
+    window.location.href = "/home";
+  });
+  button4?.addEventListener("click", function () {
+    window.location.href = "/";
+  });
+</script>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+  .header {
+    background-color: #424242;
+    color: #ffffff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Asegura que el header esté por encima de todo */
+  }
+  .header h1 {
+    margin: 0;
+  }
+  .header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .header li {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .container {
+    margin-top: 80px; /* Ajusta el margen para que la tabla no se superponga con el header */
+    text-align: center;
+  }
+  table {
+    width: 80%;
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+</style>
