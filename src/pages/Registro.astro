@@ -1,0 +1,148 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="regustro category">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Registro de Objetos</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Registro de Objetos</h1>
+
+        <div id="objetos-container">
+            <!-- Aquí se mostrarán los objetos -->
+        </div>
+
+        <button id="agregar-btn">Agregar Objeto</button>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Agregar Objeto</h2>
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Nombre del objeto"
+                />
+                <textarea id="descripcion" placeholder="Descripción del objeto"
+                ></textarea>
+                <button id="guardar-btn">Guardar</button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</Layout>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const objetosContainer = document.getElementById("objetos-container");
+        const modal = document.getElementById("modal");
+        const agregarBtn = document.getElementById("agregar-btn");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const guardarBtn = document.getElementById("guardar-btn");
+
+        agregarBtn.onclick = function () {
+            modal.style.display = "block";
+        };
+
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        guardarBtn.onclick = function () {
+            const nombre = document.getElementById("nombre").value;
+            const descripcion = document.getElementById("descripcion").value;
+
+            if (nombre && descripcion) {
+                agregarObjeto(nombre, descripcion);
+                modal.style.display = "none";
+                document.getElementById("nombre").value = "";
+                document.getElementById("descripcion").value = "";
+            } else {
+                alert(
+                    "Por favor ingresa un nombre y una descripción para el objeto.",
+                );
+            }
+        };
+
+        function agregarObjeto(nombre, descripcion) {
+            const objetoDiv = document.createElement("div");
+            objetoDiv.classList.add("objeto");
+            const objetoHTML = `
+      <h3>${nombre}</h3>
+      <p>${descripcion}</p>
+    `;
+            objetoDiv.innerHTML = objetoHTML;
+            objetosContainer.appendChild(objetoDiv);
+        }
+    });
+</script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    #objetos-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .objeto {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        width: 200px;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>

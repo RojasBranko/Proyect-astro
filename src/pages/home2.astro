@@ -15,89 +15,103 @@ console.log(session);
 ---
 
 <Layout title="Home2">
-    <header class="header">
-        <h1>SuperEntreteiment</h1>
-        <ul>
-            <li><button id="button4">inicio</button></li>
-            <li><button id="button3">Empresa</button></li>
-            <li><button id="button2">registrar</button></li>
-            <li><button id="button">inicio sesión</button></li>
-        </ul>
-    </header>
-    <main>
-        <h1>que pasa hermano que quieres?</h1>
-    </main>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8" />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
+            <title>Iniciar Sesión</title>
+            <link rel="stylesheet" href="styles.css" />
+        </head>
+        <body>
+            <div class="login-container">
+                <h1>Iniciar Sesión</h1>
+                <form id="login-form">
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Nombre de usuario"
+                    />
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Contraseña"
+                    />
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+                <p id="error-msg" class="error-msg"></p>
+            </div>
+
+            <script src="script.js"></script>
+        </body>
+    </html>
 </Layout>
 <script>
-    const button4 = document.querySelector("#button4");
-    const button2 = document.querySelector("#button2");
-    const button3 = document.querySelector("#button3");
-    const button = document.querySelector("#button");
-    button?.addEventListener("click", async function () {
-        window.location.href = "/";
-    });
-    button2?.addEventListener("click", async function () {
-        window.location.href = "/datos";
-    });
-    button3?.addEventListener("click", async function () {
-        window.location.href = "/home";
-    });
-    button4?.addEventListener("click", async function () {
-        window.location.href = "/";
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+  const loginForm = document.getElementById('login-form');
+  const errorMsg = document.getElementById('error-msg');
+
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    
+    if (username === 'usuario' && password === 'contraseña') {
+     
+      window.location.href = 'dashboard.html';
+    } else {
+      
+      errorMsg.textContent = 'Nombre de usuario o contraseña incorrectos';
+    }
+  });
+});
+
 </script>
 <style>
     body {
-        margin: 0;
         font-family: Arial, sans-serif;
-    }
-    .header {
-        background-color: #272626;
-        color: #fdfbfb;
-        padding: 10px 20px;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000; /* Asegura que el header esté por encima de todo */
-    }
-
-    .header h1 {
-        margin: 0;
-    }
-
-    .header ul {
-        list-style-type: none;
         margin: 0;
         padding: 0;
     }
 
-    .header li {
-        display: inline-block;
-        margin-left: 10px;
-    }
-
-    nav {
-        margin-top: 20px;
-        text-align: center;
-    }
-    nav button {
-        background-color: #555;
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        margin: 0 10px;
-        cursor: pointer;
+    .login-container {
+        max-width: 300px;
+        margin: 100px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
         border-radius: 5px;
     }
-    nav button:hover {
-        background-color: #777;
+
+    h1 {
+        text-align: center;
     }
-    main {
+
+    input[type="text"],
+    input[type="password"],
+    button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    button {
+        background-color: #007bff;
         color: white;
-        padding: 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .error-msg {
+        color: red;
         text-align: center;
     }
 </style>

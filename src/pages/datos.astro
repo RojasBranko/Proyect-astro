@@ -25,16 +25,16 @@ console.log(comments);
 
 <Layout title="regis">
   <body>
-    <header class="header">
-      <h1>SuperEntreteiment</h1>
-      <ul>
-        <li><button id="button4">inicio</button></li>
-        <li><button id="button3">Empresa</button></li>
-        <li><button id="button2">registrar</button></li>
-        <li><button id="button">inicio sesión</button></li>
-      </ul>
-    </header>
     <div class="container">
+      <header class="header">
+        <h1>SuperEntreteiment</h1>
+        
+          <button id="button4">inicio</button>
+          <button id="button3">Empresa</button>
+          <button id="button2">registrar</button>
+          <button id="button">inicio sesión</button>
+        
+      </header>
       <form method="POST" id="register-form">
         <h2>Registro de Usuario</h2>
         <div class="form-group">
@@ -59,36 +59,32 @@ console.log(comments);
   const button4 = document.querySelector("#button4");
   const button2 = document.querySelector("#button2");
   const button3 = document.querySelector("#button3");
-  const button = document.querySelector("#button");
+  const empre = document.querySelector("#button");
   const login1 = document.querySelector("#login1");
-  const nombre= document.querySelector('#username');
-  const correo= document.querySelector('#email');
-  const password= document.querySelector('#password');
-  
-  button?.addEventListener("click", async function () {
-    // Redireccionar a otro índice (por ejemplo, index.html)
-    window.location.href = "/";
-  });
-  button2?.addEventListener("click", async function () {
-    // Redireccionar a otro índice (por ejemplo, index.html)
-    window.location.href = "/datos";
-  });
-  button3?.addEventListener("click", async function () {
-    // Redireccionar a otro índice (por ejemplo, index.html)
-    window.location.href = "/home";
-  });
-  button4?.addEventListener("click", async function () {
-    // Redireccionar a otro índice (por ejemplo, index.html)
-    window.location.href = "/";
-  });
-  login1?.addEventListener("click", async function () {
-    window.location.href = "/modelo";
-  });
-  if(!nombre ||!correo || !password){
+  const nombre = document.querySelector("#username");
+  const correo = document.querySelector("#email");
+  const password = document.querySelector("#password");
+
+  empre?.addEventListener("click", async function () {
+    window.location.href = "/home2";
+  }),
+    button2?.addEventListener("click", async function () {
+      window.location.href = "/registro";
+    }),
+    button3?.addEventListener("click", async function () {
+      window.location.href = "/home";
+    }),
+    button4?.addEventListener("click", async function () {
+      window.location.href = "/";
+    }),
+    login1?.addEventListener("click", async function () {
+      window.location.href = "/home";
+    });
+
+  if (!nombre || !correo || !password) {
     alert("tienes que ingresar los datos para continuar");
     return;
   }
-  
 </script>
 
 <style>

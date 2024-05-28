@@ -1,84 +1,150 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
+
 <Layout title="Home2">
-  <header class="header">
-      <h1>SuperEntreteiment</h1>
-      <ul>
-          <li><button id="button4">inicio</button></li>
-          <li><button id="button3">Empresa</button></li>
-          <li><button id="button2">registrar</button></li>
-          <li><button id="button">inicio sesión</button></li>
-      </ul>
-  </header>
-  <main>
-      <h1>¿quienes somos nostros?</h1>
-      <p>nosotros somos una empresa de entretension para la una gran mayoria de personas que pueden </p>
-  </main>
+    <body>
+        <header>
+            <h1>SuperEntreteiment</h1>
+            <div class="botones">
+                <button id="datos">Registrar datos</button>
+                <button id="regis">Registrar</button>
+                <button id="login">Iniciar sesión</button>
+                <button id="perfil">Perfil</button>
+            </div>
+        </header>
+        <main>
+            <div class="contenido">
+                <h1>¿Quiénes somos?</h1>
+                <p>
+                    Bienvenidos a SuperEntreteiment, una compañía líder en la
+                    industria del entretenimiento digital y la innovación
+                    tecnológica. Desde nuestra fundación, nos hemos comprometido
+                    a ofrecer experiencias de juego excepcionales y a
+                    desarrollar tecnología de vanguardia para satisfacer las
+                    necesidades de nuestros clientes en todo el mundo.
+                </p>
+                <h1>Actividades</h1>
+                <p>
+                    En SuperEntreteiment, nos dedicamos a dos áreas principales:
+                    el desarrollo de videojuegos y la creación de tecnología
+                    avanzada. En cuanto a los videojuegos, nuestro equipo de
+                    talentosos diseñadores, programadores y artistas trabaja
+                    incansablemente para ofrecer experiencias de juego
+                    envolventes, emocionantes y diversas para jugadores de todas
+                    las edades y gustos. Además, también nos destacamos en la
+                    creación de tecnología, incluyendo computadoras y otros
+                    electrodomésticos, utilizando las últimas innovaciones para
+                    mejorar la vida cotidiana de las personas.
+                </p>
+                <h1>Nuestra misión</h1>
+                <p>
+                    Nuestra misión en SuperEntreteiment es doble: en primer
+                    lugar, nos esforzamos por ser líderes en la industria del
+                    entretenimiento digital, creando videojuegos que cautiven a
+                    audiencias de todo el mundo y les brinden momentos de
+                    alegría y diversión. En segundo lugar, buscamos impulsar la
+                    innovación tecnológica, desarrollando productos de última
+                    generación que mejoren la vida de las personas y les
+                    permitan alcanzar su máximo potencial en un mundo cada vez
+                    más digitalizado.
+                </p>
+                <h1>Nuestra visión</h1>
+                <p>
+                    Nuestra visión es convertirnos en un referente global tanto
+                    en la industria del entretenimiento como en el ámbito
+                    tecnológico. Nos esforzamos por ser reconocidos no solo por
+                    la calidad excepcional de nuestros videojuegos, sino también
+                    por nuestra capacidad para innovar y liderar el desarrollo
+                    de tecnología puntera que transforme la forma en que las
+                    personas interactúan con el mundo que les rodea. En [Nombre
+                    de la Empresa], estamos comprometidos con la excelencia en
+                    todo lo que hacemos, desde la creación de juegos
+                    emocionantes hasta la innovación tecnológica de vanguardia.
+                    Esperamos seguir siendo pioneros en la industria y continuar
+                    proporcionando experiencias excepcionales a nuestros
+                    clientes en todo el mundo.
+                </p>
+            </div>
+        </main>
+    </body>
 </Layout>
 <script>
-  const button4 = document.querySelector("#button4");
-  const button2 = document.querySelector("#button2");
-  const button3 = document.querySelector("#button3");
-  const button = document.querySelector("#button");
-  button?.addEventListener("click", async function () {
-      // Redireccionar a otro índice (por ejemplo, index.html)
-      window.location.href = "/";
-  });
-  button2?.addEventListener("click", async function () {
-      // Redireccionar a otro índice (por ejemplo, index.html)
-      window.location.href = "/datos";
-  });
-  button3?.addEventListener("click", async function () {
-      // Redireccionar a otro índice (por ejemplo, index.html)
-      window.location.href = "/home";
-  });
-  button4?.addEventListener("click", async function () {
-      // Redireccionar a otro índice (por ejemplo, index.html)
-      window.location.href = "/";
-  });
+    const button4 = document.querySelector("#button4");
+    const button2 = document.querySelector("#button2");
+    const button3 = document.querySelector("#button3");
+    const button = document.querySelector("#button");
+    button?.addEventListener("click", async function () {
+        // Redireccionar a otro índice (por ejemplo, index.html)
+        window.location.href = "/";
+    });
+    button2?.addEventListener("click", async function () {
+        // Redireccionar a otro índice (por ejemplo, index.html)
+        window.location.href = "/datos";
+    });
+    button3?.addEventListener("click", async function () {
+        // Redireccionar a otro índice (por ejemplo, index.html)
+        window.location.href = "/home";
+    });
+    button4?.addEventListener("click", async function () {
+        // Redireccionar a otro índice (por ejemplo, index.html)
+        window.location.href = "/";
+    });
 </script>
 <style>
-  body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-  }
-  .header {
-      background-color: #272626;
-      color: #fdfbfb;
-      padding: 10px 20px;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000; /* Asegura que el header esté por encima de todo */
-  }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
 
-  .header h1 {
-      margin: 0;
-  }
+    main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-  .header ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-  }
+    header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-  .header li {
-      display: inline-block;
-      margin-left: 10px;
-  }
-  main{
-    color: white;
-    margin: 50px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 10px;
-    padding-left: 2%;
-  }
-  h1{
-    padding-left:40%;
-  }
-  </style>
+    h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #666;
+    }
+
+    .botones {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 10px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .contenido {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+</style>

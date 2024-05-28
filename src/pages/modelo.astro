@@ -5,8 +5,8 @@ import { db, User, Todo, eq, Category } from "astro:db";
 import { getSession } from "auth-astro/server";
 import { UserN } from "astro:db";
 
-const users = await db.select().from(User);
-console.log(User);
+const user = await db.select().from(UserN);
+console.log(user);
 const tods = await db
   .select()
   .from(Todo)
@@ -38,7 +38,7 @@ console.log(session);
         <tbody id="user-table">
           
           <tr>
-            <td>{UserN.id}</td>
+            <td class="contenido1">{UserN.id}</td>
             <td>{UserN.username}</td>
             <td>{UserN.email}</td>
             
@@ -74,6 +74,9 @@ console.log(session);
   });
 </script>
 <style>
+  .contenido1{
+    color: white
+  }
   body {
     margin: 0;
     font-family: Arial, sans-serif;
